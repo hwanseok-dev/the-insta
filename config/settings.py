@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 try:
@@ -31,7 +31,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+# we whitelist localhost:3000 because that's where frontend will be served
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+)
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,9 +44,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',            # add this
+    'rest_framework',         # add this
+    'todo'                    # add this
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',    # add this
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -114,3 +121,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# WEBPACK_LOADER = {
+#     'DEFAULT': {
+#             'BUNDLE_DIR_NAME': 'bundles/',
+#             'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.dev.json'),
+#         }
+# }
