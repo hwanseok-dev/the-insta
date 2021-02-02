@@ -1,5 +1,9 @@
 # the-insta
 
+## v1.0 Demo
+
+![todo_demo](/assets/todo_demo.gif)
+
 # venv 
 1. Create venv name with mysite
    - `python3 -m venv theinsta`
